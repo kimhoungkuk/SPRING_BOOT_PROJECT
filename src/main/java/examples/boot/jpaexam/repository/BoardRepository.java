@@ -2,10 +2,12 @@ package examples.boot.jpaexam.repository;
 
 import examples.boot.jpaexam.domain.Board;
 import examples.boot.jpaexam.repository.custom.BoardRepositoryCustom;
+import org.springframework.data.domain.Page;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
+import org.springframework.data.domain.Pageable;
 import java.util.List;
 
 // Entity클래스, Id Type클래스가 제네릭으로 온다.
@@ -19,5 +21,8 @@ public interface BoardRepository
 
     @Query("SELECT distinct b FROM Board b left join fetch b.boardFiles order by b.id")
     public List<Board> getBoards();
+
+    @Query("SELECT b FROM Board b order by b.id desc")
+    public Page<Board> getBoards(Pageable page);
 
 }

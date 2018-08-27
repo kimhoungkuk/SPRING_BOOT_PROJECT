@@ -7,6 +7,9 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringRunner;
 
@@ -20,6 +23,17 @@ public class BoardRepositoryTest {
 
     @Autowired
     BoardRepository boardRepository; // test할 대살을 선언
+
+    @Test
+    public void testGetBoards() throws  Exception{
+        Pageable pageable = PageRequest.of(0,2);
+        Page<Board> boardpage = boardRepository.getBoards(pageable);
+        System.out.println("page count " + boardpage.getTotalPages());
+        System.out.println("element count " + boardpage.getTotalElements());
+        for(Board board : boardpage){
+            System.out.println(board.getId());
+        }
+    }
 
     @Test // junit
     public void testGetBoardById() throws Exception{

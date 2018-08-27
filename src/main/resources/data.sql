@@ -1,5 +1,11 @@
-insert into member ( id, name, email, password, join_date ) values (1, 'kim', 'kimhk0@naver.com', '1234', now());
-insert into member ( id, name, email, password, join_date ) values (2, 'lee', 'kimhk0@naver.com', '1234', now());
+insert into member_role(id,name) values (1,'ROLE_USER');
+insert into member_role(id,name) values (2,'ROLE_ADMIN');
+
+insert into member ( id, name, email, password, join_date ) values (1, 'kim', 'kimhk0@naver.com', '{bcrypt}$2a$10$k9wa8jrdyjJoinn8MuiYTuG8ATaKZotw/psmuntgWW4GyGDkpKPm6', now());
+insert into member ( id, name, email, password, join_date ) values (2, 'lee', 'lee0@naver.com', '{bcrypt}$2a$10$k9wa8jrdyjJoinn8MuiYTuG8ATaKZotw/psmuntgWW4GyGDkpKPm6', now());
+
+insert into member_member_role(member_id,member_role_id) values (1,1);
+insert into member_member_role(member_id,member_role_id) values (2,2);
 
 insert into board_category(id,name) values (1,'java');
 insert into board_category(id,name) values (2,'free');
